@@ -1,0 +1,47 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Origin: Klivolks
+Label: KPass
+Codename: stable
+Date: Fri, 16 Oct 2026 19:49:23 UTC
+Architectures: amd64 arm64
+Components: main
+Description: KPass Standalone APT repository
+MD5Sum:
+ 1ea4bc93e96dcb20681d8ba774a7f9b5 524 main/binary-amd64/Packages
+ 9b4bc7ef8ca75e58df9647d8d9a9289b 397 main/binary-amd64/Packages.gz
+ ec5124f96d00d830aa7f2ceec66531ca 111 main/binary-amd64/Release
+ 76f1476988360263695407a52e581040 524 main/binary-arm64/Packages
+ bff05439760b4069928259292670f64f 397 main/binary-arm64/Packages.gz
+ 5a669d723bb62e2d4996704f28e59b83 111 main/binary-arm64/Release
+SHA1:
+ 02aef4c0319575e887eef58959147912d54cd21d 524 main/binary-amd64/Packages
+ 7baad4daa491f50471e522cd619617c2f0ca331c 397 main/binary-amd64/Packages.gz
+ 40330c752bd360d45fabbd3f25afffb37a69a693 111 main/binary-amd64/Release
+ feb7128f0eb1e8c904108c9cd6a40facd01ead5a 524 main/binary-arm64/Packages
+ 0e1049836d699e51d8d6e4412fbf2bea7da084af 397 main/binary-arm64/Packages.gz
+ 2a4ca9d8b2e2c021aeb29976cdeaa5d9ca70f958 111 main/binary-arm64/Release
+SHA256:
+ e4e622f6112e0f52691ca0cc1e11df7ca96372d4c0c8d97cd96e9dfa5ab9eb80 524 main/binary-amd64/Packages
+ 5a3ee4e922b426a71c494ebcf8f5489df636a335bb3ac1728b046876ee7b93d9 397 main/binary-amd64/Packages.gz
+ 4fdfe5851f2ea5158da770993f71ed89a69bebe5e880009ecc5ad504f4fc55dd 111 main/binary-amd64/Release
+ 0ac1978d75ab98012341c1a51b02b9740103d5927ff233ddd1d04f9a4b008cfe 524 main/binary-arm64/Packages
+ 31be87a4489d37467aa534a58913dbf3bd402dffebe3f0bbf61fd8eb5ddacf02 397 main/binary-arm64/Packages.gz
+ c2397660a5edc258b93f5a768254afef7f1badf96c025d7ed3abb97a8cf85a0e 111 main/binary-arm64/Release
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEExg8qXM/cC9b5iX2tQAkYbw7F30EFAmrSf8MACgkQQAkYbw7F
+30F5oQ/7B7fXe92jlkA7zPVNxY57sUNDglrZyONP+z0iAmoZc4QG4kb7Nx1gqsGc
+7nUaWZjZOc/ATAGwDuBN7LhV9+AHZoWwIFeCGnzStqV3efWcopmGeQ/FBTPvQbsC
+XVJOqNCNU2jPaUtcZSWyH8KoUSLkHYmWb73AofOey2OZp3mJGYss9GADdjNDGTxA
+Pc+43x3vYSFWbebUegjhTyfxYKe9c9Ul8mgtigxgrmXGJ7W2cg8s7/ztRc9n239s
+YcJ5X33cgZIJphanSOZ72zOjmoKJU0KDs2nQ9zrvZYF10JhS70fFfKlnZ3yYVtqu
+kelFC2R5bjSBA4JDe1ASfjVNxpkBLwBRf7vlbRxVYk7mJI7HLDeIHwKuuPup0k+H
+TvwfPefK+MulHcbTVBx6XkOlK1GrSOTbMHcCgeYS7ld5QSo4Vi+0CJCLBjV2YOiG
+E/rMVRx0X8dg2yaXpQhMRPmR9IXlxQmn4MIJwxXoyU2vu9Qx1FNriMlJU0NhsdAh
+rqgge8ZEySupVHdtU0m2Ywti5CuLFh97j5CzHtNDsR0u+NKEINaIoFOdyyY7OaaS
+s/ba1set57R5gOMDOMjSLronr7pGQ4Q458oqS5nz/ANKlUioXXE+6A4RneaZ4BTg
+8l95d8LtHjoBLfMPaCCgVmtt8nlLJ9nqQL+wzig0aHgIDb08m6g=
+=yc7D
+-----END PGP SIGNATURE-----

@@ -1,0 +1,16 @@
+Package: kpass
+Version: 1.0.3~beta
+Architecture: amd64
+License: Proprietary
+Maintainer: Klivolks <support@klivolks.com>
+Installed-Size: 199077
+Homepage: https://klivolks.com
+Priority: optional
+Section: net
+Filename: pool/main/k/kpass/kpass_1.0.3~beta_amd64.deb
+Size: 83171202
+SHA256: 713f44693fa52b6f0103ec91ec34e38daf011d05811ccf88c688b17318f00026
+SHA1: f393ef199b42f2a427efd97535d060d5a42fbe7c
+MD5sum: fd0450d9bf668feb5b786342a9760f5c
+Description: KPass Standalone — single-organisation identity and access management.
+

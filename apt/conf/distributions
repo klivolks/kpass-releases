@@ -1,0 +1,7 @@
+Origin: Klivolks
+Label: KPass
+Codename: stable
+Architectures: amd64 arm64
+Components: main
+Description: KPass Standalone APT repository
+SignWith: C60F2A5CCFDC0BD6F9897DAD4009186F0EC5DF41

@@ -1,0 +1,5 @@
+Component: main
+Origin: Klivolks
+Label: KPass
+Architecture: amd64
+Description: KPass Standalone APT repository
