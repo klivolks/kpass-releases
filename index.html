@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Install KPass</title>
+<meta name="description" content="Download KPass Standalone — self-hosted single sign-on, OpenID Connect and access management by Klivolks. Docker, Ubuntu/Debian, RHEL/Fedora, Windows (IIS) and macOS.">
+<link rel="icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="wrap topnav-inner">
+    <a class="brand" href="#top">
+      <span class="brand-mark"><i class="fa-solid fa-user-shield"></i></span>
+      KPass
+    </a>
+    <div class="topnav-links">
+      <a href="#install">Install</a>
+      <a href="#downloads">Downloads</a>
+      <a href="#platforms">Setup</a>
+      <a href="#license">Licensing</a>
+    </div>
+    <a class="topnav-cta" href="#downloads">Download</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-top">
+      <div class="hero-copy">
+        <span class="eyebrow"><span class="dot"></span> Self-hosted · single organisation · runs offline</span>
+        <h1>Sign-in for all your apps,<br><em>on your own servers.</em></h1>
+        <p>KPass Standalone gives your applications hosted login, two-step verification, roles and permissions, and a standard OpenID Connect provider — on your infrastructure, with your database.</p>
+        <p class="hero-version" id="hero-version"><i class="fa-solid fa-tag"></i> <span>Latest release</span></p>
+      </div>
+      <div class="hero-shot">
+        <img src="assets/dashboard.jpg" alt="KPass admin console dashboard showing users, apps and sign-in activity" width="1440" height="812" loading="eager">
+      </div>
+    </div>
+
+    <div class="installer" id="install">
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-target="docker" role="tab"><i class="fa-brands fa-docker"></i> Docker</button>
+        <button class="tab" data-target="apt" role="tab"><i class="fa-brands fa-ubuntu"></i> Ubuntu / Debian</button>
+        <button class="tab" data-target="yum" role="tab"><i class="fa-brands fa-redhat"></i> RHEL / Fedora</button>
+        <button class="tab" data-target="windows" role="tab"><i class="fa-brands fa-windows"></i> Windows (IIS)</button>
+        <button class="tab" data-target="macos" role="tab"><i class="fa-brands fa-apple"></i> macOS</button>
+      </div>
+
+      <div class="term">
+
+        <div class="term-panel active" data-panel="docker">
+          <div class="term-label">Pull and run</div>
+          <div class="term-block">
+            <pre><span class="cmt"># pulls the image and starts KPass on port 8080</span>
+docker pull ghcr.io/klivolks/kpass-standalone:latest
+docker run -d --name kpass --restart=always \
+  -v kpass-data:/app/data \
+  -p 8080:8080 \
+  -e KPASS_PUBLIC_URL=https://id.example.com \
+  ghcr.io/klivolks/kpass-standalone:latest</pre>
+            <button class="copy-btn" aria-label="Copy"><i class="fa-regular fa-copy"></i></button>
+          </div>
+          <p class="term-note">Then open <code>http://localhost:8080/setup</code>. Put nginx, Apache or your ingress in front for TLS. Ready-made Compose files with MongoDB, SQL Server, MySQL or PostgreSQL are in the <a href="#downloads">downloads</a> and the <a id="compose-link" href="https://github.com/klivolks/kpass-releases/releases/latest">release</a>.</p>
+        </div>
+
+        <div class="term-panel" data-panel="apt">
+          <div class="term-label">Add the repository, then install</div>
+          <div class="term-block">
+            <pre><span class="cmt"># adds KPass's signed apt repository</span>
+curl -fsSL https://klivolks.github.io/kpass-releases/kpass-archive-keyring.asc | sudo gpg --dearmor -o /usr/share/keyrings/kpass.gpg
+echo <span class="str">"deb [signed-by=/usr/share/keyrings/kpass.gpg] https://klivolks.github.io/kpass-releases/apt stable main"</span> | sudo tee /etc/apt/sources.list.d/kpass.list
+
+<span class="cmt"># installs and starts KPass (listens on 127.0.0.1:8080)</span>
+sudo apt-get update && sudo apt-get install kpass
+sudo systemctl enable --now kpass</pre>
+            <button class="copy-btn" aria-label="Copy"><i class="fa-regular fa-copy"></i></button>
+          </div>
+          <p class="term-note">Updates arrive with <code>apt-get upgrade</code>. Settings live in <code>/etc/kpass/kpass.env</code>; nginx and Apache examples are installed to <code>/usr/share/doc/kpass/</code>. Setup continues at <code>https://&lt;your-host&gt;/setup</code>.</p>
+        </div>
+
+        <div class="term-panel" data-panel="yum">
+          <div class="term-label">Add the repository, then install</div>
+          <div class="term-block">
+            <pre><span class="cmt"># adds KPass's signed yum repository</span>
+sudo tee /etc/yum.repos.d/kpass.repo &lt;&lt;EOF
+[kpass]
+name=KPass Standalone
+baseurl=https://klivolks.github.io/kpass-releases/yum
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://klivolks.github.io/kpass-releases/kpass-archive-keyring.asc
+EOF
+
+<span class="cmt"># installs and starts KPass</span>
+sudo dnf install kpass
+sudo systemctl enable --now kpass</pre>
+            <button class="copy-btn" aria-label="Copy"><i class="fa-regular fa-copy"></i></button>
+          </div>
+          <p class="term-note">Works with <code>dnf</code> or <code>yum</code>. Setup continues at <code>https://&lt;your-host&gt;/setup</code>.</p>
+        </div>
+
+        <div class="term-panel" data-panel="windows">
+          <div class="term-label">Download, extract and run the IIS installer (elevated PowerShell)</div>
+          <div class="term-block">
+            <pre><span class="cmt"># requires IIS + the .NET 10 ASP.NET Core Hosting Bundle</span>
+Invoke-WebRequest https://github.com/klivolks/kpass-releases/releases/latest/download/kpass-windows-iis.zip -OutFile kpass-windows-iis.zip
+Expand-Archive kpass-windows-iis.zip -DestinationPath .\kpass
+cd .\kpass\iis
+.\install-iis.ps1 -SiteName KPass -HostName id.example.com -Port 443 -CertificateThumbprint &lt;thumbprint&gt;</pre>
+            <button class="copy-btn" aria-label="Copy"><i class="fa-regular fa-copy"></i></button>
+          </div>
+          <p class="term-note">
+            <a href="https://github.com/klivolks/kpass-releases/releases/latest/download/kpass-windows-iis.zip">Download kpass-windows-iis.zip</a>
+            — the script creates an IIS site and app pool (in-process hosting), sets the data folder to <code>C:\ProgramData\KPass\data</code> and grants permissions. Then browse to <code>/setup</code>.
+          </p>
+        </div>
+
+        <div class="term-panel" data-panel="macos">
+          <div class="term-label">Download, extract and register the launchd service</div>
+          <div class="term-block">
+            <pre><span class="cmt"># Apple silicon — use kpass-macos-x64.tar.gz on Intel Macs</span>
+curl -fsSLO https://github.com/klivolks/kpass-releases/releases/latest/download/kpass-macos-arm64.tar.gz
+sudo mkdir -p /usr/local/kpass /usr/local/var/kpass /usr/local/var/log
+sudo tar -xzf kpass-macos-arm64.tar.gz -C /usr/local/kpass --strip-components=1
+sudo xattr -dr com.apple.quarantine /usr/local/kpass
+sudo cp /usr/local/kpass/packaging/com.klivolks.kpass.plist /Library/LaunchDaemons/
+sudo launchctl bootstrap system /Library/LaunchDaemons/com.klivolks.kpass.plist</pre>
+            <button class="copy-btn" aria-label="Copy"><i class="fa-regular fa-copy"></i></button>
+          </div>
+          <p class="term-note">KPass listens on <code>127.0.0.1:8080</code> with data in <code>/usr/local/var/kpass</code>. Open <code>http://localhost:8080/setup</code>.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="features">
+  <div class="wrap">
+    <div class="features-grid">
+      <div class="feature">
+        <div class="feature-icon blue"><i class="fa-solid fa-right-to-bracket"></i></div>
+        <h3>Hosted sign-in &amp; SSO</h3>
+        <p>Branded login pages per app, email two-step verification, password reset and single sign-on across every app you connect.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon violet"><i class="fa-solid fa-plug"></i></div>
+        <h3>OpenID Connect &amp; KPass API</h3>
+        <p>A standard OIDC provider for new apps, plus the existing KPass code-exchange and permission-check API for apps already integrated.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon teal"><i class="fa-solid fa-database"></i></div>
+        <h3>Your database, offline-ready</h3>
+        <p>MongoDB, SQL Server, MySQL or PostgreSQL. No CDN dependencies and no calls home to keep running.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="downloads">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Downloads</div>
+      <h2>Setup files</h2>
+      <p id="release-meta">Every file from the latest release. Older versions are on the <a href="https://github.com/klivolks/kpass-releases/releases">releases page</a>.</p>
+    </div>
+
+    <div class="downloads" id="download-list">
+      <!-- Static fallback (stable file names on the latest release); enriched by script below. -->
+      <a class="dl" data-asset="kpass-windows-iis.zip" href="https://github.com/klivolks/kpass-releases/releases/latest/download/kpass-windows-iis.zip">
+        <span class="dl-ic win"><i class="fa-brands fa-windows"></i></span>
+        <span class="dl-body"><strong>Windows Server (IIS)</strong><small>kpass-windows-iis.zip · web.config + install-iis.ps1</small></span>
+        <span class="dl-size"></span><i class="fa-solid fa-download dl-go"></i>
+      </a>
+      <a class="dl" data-asset="kpass-linux-amd64.deb" href="https://github.com/klivolks/kpass-releases/releases/latest/download/kpass-linux-amd64.deb">
+        <span class="dl-ic deb"><i class="fa-brands fa-ubuntu"></i></span>
+        <span class="dl-body"><strong>Ubuntu / Debian (x64)</strong><small>kpass-linux-amd64.deb</small></span>
+        <span class="dl-size"></span><i class="fa-solid fa-download dl-go"></i>
+      </a>
+      <a class="dl" data-asset="kpass-linux-arm64.deb" href="https://github.com/klivolks/kpass-releases/releases/latest/download/kpass-linux-arm64.deb">
+        <span class="dl-ic deb"><i class="fa-brands fa-ubuntu"></i></span>
+        <span class="dl-body"><strong>Ubuntu / Debian (ARM64)</strong><small>kpass-linux-arm64.deb</small></span>
+        <span class="dl-size"></span><i class="fa-solid fa-download dl-go"></i>
+      </a>
+      <a class="dl" data-asset="kpass-linux-x86_64.rpm" href="https://github.com/klivolks/kpass-releases/releases/latest/download/kpass-linux-x86_64.rpm">
+        <span class="dl-ic rpm"><i class="fa-brands fa-redhat"></i></span>
+        <span class="dl-body"><strong>RHEL / Fedora (x64)</strong><small>kpass-linux-x86_64.rpm</small></span>
+        <span class="dl-size"></span><i class="fa-solid fa-download dl-go"></i>
+      </a>
+      <a class="dl" data-asset="kpass-linux-aarch64.rpm" href="https://github.com/klivolks/kpass-releases/releases/latest/download/kpass-linux-aarch64.rpm">
+        <span class="dl-ic rpm"><i class="fa-brands fa-redhat"></i></span>
+        <span class="dl-body"><strong>RHEL / Fedora (ARM64)</strong><small>kpass-linux-aarch64.rpm</small></span>
+        <span class="dl-size"></span><i class="fa-solid fa-download dl-go"></i>
+      </a>
+      <a class="dl" data-asset="kpass-linux-x64.tar.gz" href="https://github.com/klivolks/kpass-releases/releases/latest/download/kpass-linux-x64.tar.gz">
+        <span class="dl-ic tux"><i class="fa-brands fa-linux"></i></span>
+        <span class="dl-body"><strong>Linux archive (x64)</strong><small>kpass-linux-x64.tar.gz · self-contained</small></span>
+        <span class="dl-size"></span><i class="fa-solid fa-download dl-go"></i>
+      </a>
+      <a class="dl" data-asset="kpass-linux-arm64.tar.gz" href="https://github.com/klivolks/kpass-releases/releases/latest/download/kpass-linux-arm64.tar.gz">
+        <span class="dl-ic tux"><i class="fa-brands fa-linux"></i></span>
+        <span class="dl-body"><strong>Linux archive (ARM64)</strong><small>kpass-linux-arm64.tar.gz · self-contained</small></span>
+        <span class="dl-size"></span><i class="fa-solid fa-download dl-go"></i>
+      </a>
+      <a class="dl" data-asset="kpass-macos-arm64.tar.gz" href="https://github.com/klivolks/kpass-releases/releases/latest/download/kpass-macos-arm64.tar.gz">
+        <span class="dl-ic mac"><i class="fa-brands fa-apple"></i></span>
+        <span class="dl-body"><strong>macOS (Apple silicon)</strong><small>kpass-macos-arm64.tar.gz</small></span>
+        <span class="dl-size"></span><i class="fa-solid fa-download dl-go"></i>
+      </a>
+      <a class="dl" data-asset="kpass-macos-x64.tar.gz" href="https://github.com/klivolks/kpass-releases/releases/latest/download/kpass-macos-x64.tar.gz">
+        <span class="dl-ic mac"><i class="fa-brands fa-apple"></i></span>
+        <span class="dl-body"><strong>macOS (Intel)</strong><small>kpass-macos-x64.tar.gz</small></span>
+        <span class="dl-size"></span><i class="fa-solid fa-download dl-go"></i>
+      </a>
+      <a class="dl" data-asset="kpass-docker-compose.zip" href="https://github.com/klivolks/kpass-releases/releases/latest/download/kpass-docker-compose.zip">
+        <span class="dl-ic dock"><i class="fa-brands fa-docker"></i></span>
+        <span class="dl-body"><strong>Docker Compose files</strong><small>kpass-docker-compose.zip · MongoDB, SQL Server, MySQL, PostgreSQL</small></span>
+        <span class="dl-size"></span><i class="fa-solid fa-download dl-go"></i>
+      </a>
+    </div>
+
+    <div class="verify">
+      <div class="verify-head"><i class="fa-solid fa-shield-check"></i> Verify your download</div>
+      <p>Every release publishes <a data-asset-link="checksums.txt" href="https://github.com/klivolks/kpass-releases/releases/latest/download/checksums.txt">checksums.txt</a>, signed with Sigstore (keyless) by the release workflow, and the container image is signed too.</p>
+      <div class="term-block light">
+        <pre>cosign verify-blob checksums.txt --bundle checksums.txt.bundle \
+  --certificate-identity-regexp '^https://github.com/klivolks/' \
+  --certificate-oidc-issuer https://token.actions.githubusercontent.com
+sha256sum --ignore-missing -c checksums.txt</pre>
+        <button class="copy-btn" aria-label="Copy"><i class="fa-regular fa-copy"></i></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="platforms">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">What happens after install</div>
+      <h2>Same four steps, every platform</h2>
+      <p>However you install it, KPass opens the same setup wizard at <code>/setup</code>.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h4>Pick a database</h4>
+        <p>MongoDB, SQL Server, MySQL or PostgreSQL. Point it at an existing KPass database to reconnect.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h4>Name your organisation</h4>
+        <p>Set the public HTTPS address — it becomes your OpenID Connect issuer.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h4>Create your admin</h4>
+        <p>Only on a fresh database. Optionally connect SMTP or Klivolks Comms for sign-in codes.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <h4>Activate</h4>
+        <p>Start a 30-day trial, enter a license key, or paste an offline token.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="license">
+  <div class="wrap">
+    <div class="license-band">
+      <div class="ic"><i class="fa-solid fa-key"></i></div>
+      <div>
+        <h3>Licensing works offline too</h3>
+        <p>
+          Every license is a cryptographically signed token, verified locally — editing the license file can't extend it.
+          If your KPass server has no internet access, the setup wizard and the admin console's <strong>License</strong> page show an
+          <strong>Installation ID</strong> you can send us for a signed token you paste back in, with no network call required on your end.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div>© 2018–<span id="year">2026</span> Klivolks</div>
+    <div class="footer-links">
+      <a href="https://klivolks.com">klivolks.com</a>
+      <a href="https://github.com/klivolks/kpass-releases/releases">Releases</a>
+      <a href="https://github.com/klivolks/kpass-releases">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const REPO = 'klivolks/kpass-releases';
+
+  // Platform tabs
+  const tabs = document.querySelectorAll('.tab');
+  const panels = document.querySelectorAll('.term-panel');
+  tabs.forEach(tab => tab.addEventListener('click', () => {
+    tabs.forEach(t => t.classList.remove('active'));
+    panels.forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.querySelector(`.term-panel[data-panel="${tab.dataset.target}"]`).classList.add('active');
+  }));
+
+  // Preselect the visitor's platform
+  const ua = navigator.userAgent;
+  const guess = /Windows/.test(ua) ? 'windows' : /Mac OS X/.test(ua) ? 'macos' : /Fedora|Red Hat|CentOS/.test(ua) ? 'yum' : /Linux/.test(ua) ? 'apt' : null;
+  if (guess) document.querySelector(`.tab[data-target="${guess}"]`)?.click();
+
+  // Copy buttons
+  document.querySelectorAll('.copy-btn').forEach(btn => btn.addEventListener('click', () => {
+    const text = btn.closest('.term-block').querySelector('pre').innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      const icon = btn.querySelector('i');
+      icon.className = 'fa-solid fa-check';
+      setTimeout(() => { icon.className = 'fa-regular fa-copy'; }, 1400);
+    });
+  }));
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Enrich downloads with the latest release's version, sizes and exact URLs.
+  const fmtSize = b => b > 1048576 ? (b / 1048576).toFixed(1) + ' MB' : Math.max(1, Math.round(b / 1024)) + ' KB';
+  fetch(`https://api.github.com/repos/${REPO}/releases/latest`, { headers: { Accept: 'application/vnd.github+json' } })
+    .then(r => r.ok ? r.json() : Promise.reject(r.status))
+    .then(release => {
+      const assets = Object.fromEntries((release.assets || []).map(a => [a.name, a]));
+      document.querySelectorAll('[data-asset]').forEach(el => {
+        const a = assets[el.dataset.asset];
+        if (!a) { el.classList.add('missing'); return; }
+        el.href = a.browser_download_url;
+        el.querySelector('.dl-size').textContent = fmtSize(a.size);
+      });
+      document.querySelectorAll('[data-asset-link]').forEach(el => {
+        const a = assets[el.dataset.assetLink];
+        if (a) el.href = a.browser_download_url;
+      });
+      const when = new Date(release.published_at).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+      document.getElementById('release-meta').innerHTML =
+        `Version <strong>${release.tag_name}</strong>, released ${when}. ` +
+        `<a href="${release.html_url}">Release notes</a> · <a href="https://github.com/${REPO}/releases">all versions</a>.`;
+      document.querySelector('#hero-version span').textContent = `${release.tag_name} · ${when}`;
+    })
+    .catch(() => { /* offline or rate-limited: the static links still point at the latest release */ });
+
+  // Hero image parallax (same as kGate): scroll drift + subtle pointer tilt.
+  const heroImg = document.querySelector('.hero-shot img');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (heroImg && !reduceMotion) {
+    const heroEl = document.querySelector('.hero');
+    let scrollY = 0, tiltX = 0, tiltY = 0, ticking = false;
+    const render = () => { heroImg.style.transform = `translateY(${scrollY}px) rotateX(${tiltY}deg) rotateY(${tiltX}deg)`; ticking = false; };
+    const schedule = () => { if (!ticking) { requestAnimationFrame(render); ticking = true; } };
+    window.addEventListener('scroll', () => {
+      const rect = heroEl.getBoundingClientRect();
+      scrollY = Math.min(Math.max(-rect.top, 0), rect.height) * 0.22;
+      schedule();
+    }, { passive: true });
+    heroEl.addEventListener('mousemove', e => {
+      const rect = heroEl.getBoundingClientRect();
+      tiltX = ((e.clientX - rect.left) / rect.width - 0.5) * 8;
+      tiltY = ((e.clientY - rect.top) / rect.height - 0.5) * -8;
+      schedule();
+    });
+    heroEl.addEventListener('mouseleave', () => { tiltX = 0; tiltY = 0; schedule(); });
+  }
+</script>
+
+</body>
+</html>
