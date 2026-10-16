@@ -4,44 +4,44 @@ Hash: SHA512
 Origin: Klivolks
 Label: KPass
 Codename: stable
-Date: Fri, 16 Oct 2026 19:49:23 UTC
+Date: Fri, 16 Oct 2026 21:16:15 UTC
 Architectures: amd64 arm64
 Components: main
 Description: KPass Standalone APT repository
 MD5Sum:
- 1ea4bc93e96dcb20681d8ba774a7f9b5 524 main/binary-amd64/Packages
- 9b4bc7ef8ca75e58df9647d8d9a9289b 397 main/binary-amd64/Packages.gz
+ 59bb560743e2606e7b9398188d718b12 524 main/binary-amd64/Packages
+ 52af437ee92130c9c17702dbba9ee668 396 main/binary-amd64/Packages.gz
  ec5124f96d00d830aa7f2ceec66531ca 111 main/binary-amd64/Release
- 76f1476988360263695407a52e581040 524 main/binary-arm64/Packages
- bff05439760b4069928259292670f64f 397 main/binary-arm64/Packages.gz
+ d839648f893f35080de6ec9bf50ac495 524 main/binary-arm64/Packages
+ 4e29c382ecf50a4717af1a08a2fbb2b6 396 main/binary-arm64/Packages.gz
  5a669d723bb62e2d4996704f28e59b83 111 main/binary-arm64/Release
 SHA1:
- 02aef4c0319575e887eef58959147912d54cd21d 524 main/binary-amd64/Packages
- 7baad4daa491f50471e522cd619617c2f0ca331c 397 main/binary-amd64/Packages.gz
+ 898c8f9081b3f5659daeb24bc1baad50bcea6e68 524 main/binary-amd64/Packages
+ 78b52dbb78bc28a3e43d94997bf326e30d51da09 396 main/binary-amd64/Packages.gz
  40330c752bd360d45fabbd3f25afffb37a69a693 111 main/binary-amd64/Release
- feb7128f0eb1e8c904108c9cd6a40facd01ead5a 524 main/binary-arm64/Packages
- 0e1049836d699e51d8d6e4412fbf2bea7da084af 397 main/binary-arm64/Packages.gz
+ 2765d013fa115806ec52e2111f702ac41350b532 524 main/binary-arm64/Packages
+ 4592d9b8ddf2582fce7c3176506e3eabc4276922 396 main/binary-arm64/Packages.gz
  2a4ca9d8b2e2c021aeb29976cdeaa5d9ca70f958 111 main/binary-arm64/Release
 SHA256:
- e4e622f6112e0f52691ca0cc1e11df7ca96372d4c0c8d97cd96e9dfa5ab9eb80 524 main/binary-amd64/Packages
- 5a3ee4e922b426a71c494ebcf8f5489df636a335bb3ac1728b046876ee7b93d9 397 main/binary-amd64/Packages.gz
+ cc7150aa0353d77ccaa77268b2ae4a58810a2012f2a4425b2c8b251aa758015c 524 main/binary-amd64/Packages
+ cc1103faf04505a4984f092c99a403655b5f269597668c80767ca17a8174af2f 396 main/binary-amd64/Packages.gz
  4fdfe5851f2ea5158da770993f71ed89a69bebe5e880009ecc5ad504f4fc55dd 111 main/binary-amd64/Release
- 0ac1978d75ab98012341c1a51b02b9740103d5927ff233ddd1d04f9a4b008cfe 524 main/binary-arm64/Packages
- 31be87a4489d37467aa534a58913dbf3bd402dffebe3f0bbf61fd8eb5ddacf02 397 main/binary-arm64/Packages.gz
+ d1220d0da40f6267dfdfbcfc557c224e0391273c45c5423ca444d1e09961f4fa 524 main/binary-arm64/Packages
+ f208549e78aa9f1623c91547b2567f4ede5cbb9977f79fb799f9a9fa7d1919e3 396 main/binary-arm64/Packages.gz
  c2397660a5edc258b93f5a768254afef7f1badf96c025d7ed3abb97a8cf85a0e 111 main/binary-arm64/Release
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCgAdFiEExg8qXM/cC9b5iX2tQAkYbw7F30EFAmrSf8MACgkQQAkYbw7F
-30F5oQ/7B7fXe92jlkA7zPVNxY57sUNDglrZyONP+z0iAmoZc4QG4kb7Nx1gqsGc
-7nUaWZjZOc/ATAGwDuBN7LhV9+AHZoWwIFeCGnzStqV3efWcopmGeQ/FBTPvQbsC
-XVJOqNCNU2jPaUtcZSWyH8KoUSLkHYmWb73AofOey2OZp3mJGYss9GADdjNDGTxA
-Pc+43x3vYSFWbebUegjhTyfxYKe9c9Ul8mgtigxgrmXGJ7W2cg8s7/ztRc9n239s
-YcJ5X33cgZIJphanSOZ72zOjmoKJU0KDs2nQ9zrvZYF10JhS70fFfKlnZ3yYVtqu
-kelFC2R5bjSBA4JDe1ASfjVNxpkBLwBRf7vlbRxVYk7mJI7HLDeIHwKuuPup0k+H
-TvwfPefK+MulHcbTVBx6XkOlK1GrSOTbMHcCgeYS7ld5QSo4Vi+0CJCLBjV2YOiG
-E/rMVRx0X8dg2yaXpQhMRPmR9IXlxQmn4MIJwxXoyU2vu9Qx1FNriMlJU0NhsdAh
-rqgge8ZEySupVHdtU0m2Ywti5CuLFh97j5CzHtNDsR0u+NKEINaIoFOdyyY7OaaS
-s/ba1set57R5gOMDOMjSLronr7pGQ4Q458oqS5nz/ANKlUioXXE+6A4RneaZ4BTg
-8l95d8LtHjoBLfMPaCCgVmtt8nlLJ9nqQL+wzig0aHgIDb08m6g=
-=yc7D
+iQIzBAEBCgAdFiEExg8qXM/cC9b5iX2tQAkYbw7F30EFAmrSlB8ACgkQQAkYbw7F
+30ESRQ/9HLRsaGDXkkK5K1FJ9ChN8eXG8hQaBWvnJVVlI4n0fpo1MQK+Te/KSqMQ
+rzBeMO9QlDQOee3GIY/KmtNUWNanbCTHjaJ5p1DTUrAVN2Euy++AC16p+UvNj4mO
+0vsDjSzJzGGGBj5XUvg4uvgvxemDTES5bz94KzGAq7Jc0r6JrZ1pb5/fWO2GDOZw
+3KvL38Y8UfZEDuYMO/GOhMylb82vtWwOs8yKKCVcBwx7ip358LArWzx6/MK4rK39
+OiaOTfdGT+TZ5bDX7IOfggewZ6UIuveWNdsKattK1XNWgLv1B23eeEUVoC39oJOY
+jFx6orqZegWIOlVW+GhPtMZsO/cvNvBgqbi8z5K1pB/N/LncvX5j1C4tX5gTHbU6
+BvqAcbxU9rqUiE39eqORu13/4UN2CV1aSrJru1HNVIKIvus+LSkguaBWtWfIScxW
+DEmiE4rM99p/ZiwIqJlPAR8/bh4QRqK74PvCWtqRD9sJignGR9lhfaH0eSZGfgKF
+tXeYKvqM5d6BpPYmhMB2gh5v8ZXuoq9NuYmsX7kQOhULiNgPtCxng6sT2+zGG/je
+egjOHJXAQ4NQ4vZelgETWTLBZF1oNlk7wwZ9OH7BFlb3am3FkR6K93c9HGUAnOJk
+TzLIZD7ApRai0IUQM9E9cOlR2SiNW26SG7SUn+ICe31rMNIrzLs=
+=G5FW
 -----END PGP SIGNATURE-----
